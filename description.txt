@@ -1,0 +1,61 @@
+CSE 403 Assignment #1 (10 EXTRA-points)
+Spring 2019
+
+Introduction:
+
+
+Distributed Hash Ta
+ble
+
+This programming assignment involves the implementation of a distributed hash table (DHT). The specification intentionally leaves many components and designs undefined. Work on your own design. Please document your decisions/attempts/success/failure. They will be the main topic of the grading process, along with looking at the performance evaluation of you DHT.
+
+The submission should be done through coursesite.lehigh.edu and should consist of:
+- the source code of your assignment;
+- a document containing the performance plots and the findings you consider worth to be shared with me (if any).
+
+I will grade assignments during a one-on-one meeting with you.
+
+Good luck guys!
+
+**** Submission deadline is Monday 18th of February at 11:55PM through coursesite.
+
+========================
+Specification:
+
+- A DHT is a data structure that offers the same APIs of a conventional hash map, meaning put(K,V) and get(K).
+-- The put(K,V) API is responsible for storing the value V associated with the key K.
+-- The get(K) API is responsible for retrieving the value associated with the key K.
+
+- For simplicity, let us assume that keys can only be integer values (although if you use generics would be much better). Values can be any type.
+
+- The semantics of the above operations is the following:
+-- the put(K,V) returns true (i.e., adds V to the DHT) where there is no element already associated with K; otherwise returns false;
+-- the get(K) returns the value associated with K if any; otherwise NULL.
+
+- Keys stored in the DHT are partitioned across different processes (or nodes). You can assume a static mapping between keys and partition (or node). For example, you can assume that all keys between 0 and 100 are stored and maintained by Node 0, and so on.
+
+- No crash is assumed to happen during the application execution; therefore fault-tolerance is not required.
+
+- The DHT should be easy to configure: during the initialization of the DHT, a property file should be available per process. This property file stores the settings of the runtime (e.g., IPs of other processes). Changes to these settings will not affect the current execution but they are meant to configure the DHT when it boots up.
+
+- Locks, or any other form of synchronization, should be needed to prevent concurrent accesses to the same key in the DHT, regardless of the type of operation. In other words, two or more operations (get or put) requesting the same key should not proceed at the same time. When such a conflict happens, one operation successfully accesses the key and the others should retry their requests until they succeed. Any coarse-grained or fine-grained synchronization design is allowed.
+
+- Since each process knows the composition of the distributed system, each process waits until all other processes are running and then it starts executing operations after that.
+
+- Deploy your DHT on at least three processes. These processes can be three different nodes in sunlab, or on Amazon, or on any other platform that offers computing nodes. Importantly, processes cannot be on the same local machine, they have to be distributed.
+
+- To test your DHT, write a simple application that activates one thread and generates a configurable number of operations on the DHT (e.g., 100000). Each operation accesses a random key. You should have 40% of probability to execute a put operation and 60% of probability to execute a get operation. Note that on each deployed node there should be one instance of the test application, therefore if your system has three nodes, overall you should have three test applications executing at the same time.
+
+- After one operation completes successfully, each application instance is expected to print on the output terminal the following four partial counters:
+-- the total number of successful put operations, meaning those that returned TRUE;
+-- the total number of non-successful put operations, meaning those that returned FALSE;
+-- the total number of get operations that returned a value different from NULL;
+-- the total number of get operations that returned a NULL value.
+
+- The test application should also collect performance metrics to be included in plots. Specifically, two metrics need to be collected: average throughput (i.e., the average number of operations per second performed by all processes) and average latency (i.e., the average time needed by the system to accomplish one operation). At least two plots need to be delivered: one plot should have on the y-axis the system throughout, and one plot should have on the y-axis the average latency. Both of them have the range of keys as x-axis. The ranges of keys to use are the following {10;100;1000;10000}.
+
+- No specific programming language it is required to be used. Choose one wisely.
+
+Good luck folks and do not hesitate to contact me for any clarification.
+
+Roberto Palmieri
