@@ -111,15 +111,15 @@ atomic_int get_fail;
 			
 			if(request.operation_type == PUT){
 
-			cout << "put " << info->hash_key<< " " << info->hash_value << " at " <<
+			//cout << "put " << info->hash_key<< " " << info->hash_value << " at " <<
 
-							std::asctime(std::localtime(&(info->time_stamp)))<<"\n";
+							//std::asctime(std::localtime(&(info->time_stamp)))<<"\n";
 
 			} else {
 
-			cout << "get " << info->hash_key << " at " << 
+			//cout << "get " << info->hash_key << " at " << 
 
-							std::asctime(std::localtime(&(info->time_stamp)))<<"\n";
+							//std::asctime(std::localtime(&(info->time_stamp)))<<"\n";
 			}
 			
 			usleep(interval);
@@ -127,7 +127,7 @@ atomic_int get_fail;
 			message_sent ++;
 		}
 		
-		cout<<"terminate ipc send\n";
+		//cout<<"terminate ipc send\n";
 	} 
 
 	template<typename T>
@@ -206,7 +206,7 @@ atomic_int get_fail;
 
 		}
 		
-		cout<<"terminate ipc receive\n";
+		//cout<<"terminate ipc receive\n";
 	}
 
 	template<typename T>
@@ -221,10 +221,10 @@ atomic_int get_fail;
 
 		if(response->operation_type == PUT) {
 
-			cout << "PUT " << info->hash_key;
+			//cout << "PUT " << info->hash_key;
 
 			if(!info->status){
-				cout <<" SUCCESS, ";
+				//cout <<" SUCCESS, ";
 				put_success += 1;
 			}
 
@@ -232,33 +232,33 @@ atomic_int get_fail;
 
 			else{
 
-				cout << " FAIL, ";
+				//cout << " FAIL, ";
 				put_fail += 1;
 			}
 
 		} else {
 
-			cout << "GET " << info->hash_key;
+			//cout << "GET " << info->hash_key;
 
 			if(!info->status){
 
-				cout << " SUCCESS, ";
+				//cout << " SUCCESS, ";
 				get_success += 1;
 				}
 
 			else{
 
-				cout << " FAIL, ";
+				//cout << " FAIL, ";
 				get_fail += 1;
 			}
 
 		}
 
-		cout << "at time " << std::asctime(std::localtime(&(info->time_stamp)));
+		//cout << "at time " << std::asctime(std::localtime(&(info->time_stamp)));
 
 		if(!info->status) 
 
-			cout << "value is " << info->hash_value << "\n";
+			//cout << "value is " << info->hash_value << "\n";
 
 		return status;
 

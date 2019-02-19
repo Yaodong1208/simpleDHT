@@ -95,7 +95,7 @@ using namespace std;
 
 				IPC_response.operation_type = PUT;
 
-				cout<<"local put "<<IPC_request_info->hash_key<<" "<<IPC_request_info->hash_value<<" at "<< std::asctime(std::localtime(&(IPC_request_info->time_stamp)))<<" on "<<world_rank<<"\n";
+				//cout<<"local put "<<IPC_request_info->hash_key<<" "<<IPC_request_info->hash_value<<" at "<< std::asctime(std::localtime(&(IPC_request_info->time_stamp)))<<" on "<<world_rank<<"\n";
 
 				if(localPut<T>(IPC_request_info, (IPCResponseInfo<T>*)(IPC_response.message_text))){
 					
@@ -108,7 +108,7 @@ using namespace std;
 
 				IPC_response.operation_type = GET;
 
-				cout<<"local get "<<IPC_request_info->hash_key<<" at "<< std::asctime(std::localtime(&(IPC_request_info->time_stamp)))<<" on "<<world_rank<<"\n";
+				//cout<<"local get "<<IPC_request_info->hash_key<<" at "<< std::asctime(std::localtime(&(IPC_request_info->time_stamp)))<<" on "<<world_rank<<"\n";
 
 				if(localGet<T>(IPC_request_info, (IPCResponseInfo<T>*)(IPC_response.message_text))) {
 
@@ -264,7 +264,7 @@ using namespace std;
 
 			case GET:
 
-				cout<<"remote get "<<MPI_request->hash_key<<" at "<< std::asctime(std::localtime(&(MPI_request->time_stamp)))<<" on "<<world_rank<<"\n";
+				//cout<<"remote get "<<MPI_request->hash_key<<" at "<< std::asctime(std::localtime(&(MPI_request->time_stamp)))<<" on "<<world_rank<<"\n";
 				
 				T value;
 				 status = get<T>(MPI_request->hash_key, MPI_request->time_stamp, &value, &MPI_response.status);
@@ -278,7 +278,7 @@ using namespace std;
 				break;
 
 			case PUT:
-				cout<<"remote put "<<MPI_request->hash_key<<" "<<MPI_request->hash_value<<" at "<< std::asctime(std::localtime(&(MPI_request->time_stamp)))<<" on "<<world_rank<<"\n";
+				//cout<<"remote put "<<MPI_request->hash_key<<" "<<MPI_request->hash_value<<" at "<< std::asctime(std::localtime(&(MPI_request->time_stamp)))<<" on "<<world_rank<<"\n";
 
 				status = put<T>(MPI_request->hash_key, &MPI_request->hash_value, MPI_request->time_stamp, &MPI_response.status);
 
@@ -355,15 +355,15 @@ using namespace std;
 					
 					if(MPI_request.operation_type == PUT){
 						
-						cout<<"receive MPI Request from "<<MPI_request.source<<" PUT "<<MPI_request.hash_key<<" "
+						//cout<<"receive MPI Request from "<<MPI_request.source<<" PUT "<<MPI_request.hash_key<<" "
 
-						<<MPI_request.hash_value <<" at "<< std::asctime(std::localtime(&(MPI_request.time_stamp)))<<"\n";
+						//<<MPI_request.hash_value <<" at "<< std::asctime(std::localtime(&(MPI_request.time_stamp)))<<"\n";
 
 					}else {
 
-						cout<<"receive MPI Request from "<<MPI_request.source<<" GET "<<MPI_request.hash_key<<
+						//cout<<"receive MPI Request from "<<MPI_request.source<<" GET "<<MPI_request.hash_key<<
 
-						" at "<< std::asctime(std::localtime(&(MPI_request.time_stamp)))<<"\n";
+						//" at "<< std::asctime(std::localtime(&(MPI_request.time_stamp)))<<"\n";
 					}
 
 					//use mPIReqeustProcess to process MPI_request
@@ -396,15 +396,15 @@ using namespace std;
 
 					if(MPI_response.operation_type == PUT){
 						
-						cout<<"receive MPI Response " << "PUT "<< MPI_response.hash_key <<" "
+						//cout<<"receive MPI Response " << "PUT "<< MPI_response.hash_key <<" "
 
-						<<MPI_response.hash_value <<" at "<< std::asctime(std::localtime(&(MPI_response.time_stamp)))<<"\n";
+						//<<MPI_response.hash_value <<" at "<< std::asctime(std::localtime(&(MPI_response.time_stamp)))<<"\n";
 
 					}else {
 
-						cout<<"receive MPI Response" << " GET "<<MPI_response.hash_key <<" "
+						//cout<<"receive MPI Response" << " GET "<<MPI_response.hash_key <<" "
 
-						<<MPI_response.hash_value << " at "<<std::asctime(std::localtime(&(MPI_response.time_stamp)))<<"\n";
+						//<<MPI_response.hash_value << " at "<<std::asctime(std::localtime(&(MPI_response.time_stamp)))<<"\n";
 					}
 
 					//use mPIReqeustProcess to process MPI_request
@@ -440,15 +440,15 @@ using namespace std;
 
 		if(MPI_response->operation_type == PUT){
 						
-			cout<<"send MPI Response " << "PUT "<< MPI_response->hash_key <<" "
+			//cout<<"send MPI Response " << "PUT "<< MPI_response->hash_key <<" "
 
-				<<MPI_response->hash_value <<" at "<< std::asctime(std::localtime(&(MPI_response->time_stamp)))<<"\n";
+				//<<MPI_response->hash_value <<" at "<< std::asctime(std::localtime(&(MPI_response->time_stamp)))<<"\n";
 
 		}else {
 
-			cout<<"send MPI Response" << " GET "<<MPI_response->hash_key <<" "
+			//cout<<"send MPI Response" << " GET "<<MPI_response->hash_key <<" "
 
-			<<MPI_response->hash_value << " at "<<std::asctime(std::localtime(&(MPI_response->time_stamp)))<<"\n";
+			//<<MPI_response->hash_value << " at "<<std::asctime(std::localtime(&(MPI_response->time_stamp)))<<"\n";
 		}
 
 
