@@ -256,7 +256,7 @@ atomic_int get_fail;
 
 		//cout << "at time " << std::asctime(std::localtime(&(info->time_stamp)));
 
-		if(!info->status) 
+		//if(!info->status) 
 
 			//cout << "value is " << info->hash_value << "\n";
 

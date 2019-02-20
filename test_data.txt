@@ -1,0 +1,229 @@
+/////////////////////////////////////////////////////////////
+//////////////         Singlenode test       ///////////////       
+////////////////////////////////////////////////////////////
+[server]
+mpiexec -n 3 ./server
+
+[dht0] 
+./client 1000 10 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 39808
+put_fail number is 8
+get_success number is 60158
+get_fail number is 26
+duration is 4.31317
+
+./client 1000 100 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 40013
+put_fail number is 1
+get_success number is 59814
+get_fail number is 172
+duration is 4.26309
+
+./client 1000 1000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 40042
+put_fail number is 0
+get_success number is 58588
+get_fail number is 1370
+duration is 4.24212
+
+./client 1000 10000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 39836
+put_fail number is 0
+get_success number is 47002
+get_fail number is 13162
+duration is 4.27758
+
+
+/////////////////////////////////////////////////////////////
+///////////////         Multinode test      ////////////////
+////////////////////////////////////////////////////////////
+
+[server]
+mpiexec -n 3 -f machinefile ./server
+
+[dht0]
+./client 0 10 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 23643
+put_fail number is 16490
+get_success number is 35310
+get_fail number is 24557
+duration is 4.95968
+
+./client 0 100 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 23807
+put_fail number is 16253
+get_success number is 35651
+get_fail number is 24289
+duration is 4.96431
+
+./client 0 1000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 28353
+put_fail number is 11774
+get_success number is 41563
+get_fail number is 18310
+duration is 4.8827
+
+./client 0 1000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 36501
+put_fail number is 3333
+get_success number is 49376
+get_fail number is 10790
+duration is 4.94057
+
+
+
+[dht1]
+./client 0 10 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 26509
+put_fail number is 13494
+get_success number is 39759
+get_fail number is 20238
+duration is 4.92524
+
+./client 0 100 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 27366
+put_fail number is 12620
+get_success number is 41287
+get_fail number is 18727
+duration is 4.94262
+
+./client 0 1000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 38136
+put_fail number is 2018
+get_success number is 56783
+get_fail number is 3063
+duration is 5.04898
+
+./client 0 10000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 38196
+put_fail number is 1728
+get_success number is 54876
+get_fail number is 5200
+duration is 4.99166
+
+
+
+[dht2]
+./client 0 10 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 31790
+put_fail number is 8173
+get_success number is 47865
+get_fail number is 12172
+duration is 5.0552
+
+./client 0 100 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 35062
+put_fail number is 4904
+get_success number is 52728
+get_fail number is 7306
+duration is 5.06474
+
+./client 0 1000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 28732
+put_fail number is 11053
+get_success number is 42954
+get_fail number is 17261
+duration is 5.02917
+
+./client 0 10000 100000 0.4
+****************metrics****************
+total_process number100000
+put_success number is 39597
+put_fail number is 767
+get_success number is 53449
+get_fail number is 6187
+duration is 5.09055
+
+
+/////////////////////////////////////////////////////////////////
+//////////////   linear process time                /////////////
+////////////////////////////////////////////////////////////////
+./client 0 10 10000 0.4
+
+[dht0]
+****************metrics****************
+total_process number10000
+put_success number is 3923
+put_fail number is 17
+get_success number is 6024
+get_fail number is 36
+duration is 0.487928
+
+[dht1]
+****************metrics****************
+total_process number10000
+put_success number is 4033
+put_fail number is 0
+get_success number is 5967
+get_fail number is 0
+duration is 0.481162
+
+[dht2]
+****************metrics****************
+total_process number10000
+put_success number is 3996
+put_fail number is 0
+get_success number is 6004
+get_fail number is 0
+duration is 0.500929
+
+
+//////////////////////////////////////////////////////////////////
+//////////////// some error           ///////////////////////////
+/////////////////////////////////////////////////////////////////
+[dht0]
+./client 100 10 100000 0.4 
+
+[server]
+error: Assertion failed in file /mirror/mpi/mpich-3.3/src/mpid/ch3/src/ch3u_request.c at line 572: *(&incomplete) >= 0
+
+average time cost 0f 100000 operation
+4732700
+4990556
+4986950
+5007953
+
+average latency
+47 us
+50 us
+50 us
+50 us
+
+average throughput
+21130
+20038
+20052
+19968
+
+
+
