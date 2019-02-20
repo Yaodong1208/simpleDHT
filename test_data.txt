@@ -207,23 +207,23 @@ duration is 0.500929
 [server]
 error: Assertion failed in file /mirror/mpi/mpich-3.3/src/mpid/ch3/src/ch3u_request.c at line 572: *(&incomplete) >= 0
 
-average time cost 0f 100000 operation
+average time cost 0f 300000 operation
 4732700
 4990556
 4986950
 5007953
 
 average latency
-47 us
-50 us
-50 us
-50 us
+16 us
+17 us
+17 us
+17 us
 
 average throughput
-21130
-20038
-20052
-19968
+63389
+61014
+60157
+59905
 
 
 
